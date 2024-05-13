@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #366ab2;
+    cursor: pointer;
+  }
+}
+
+button {
+  background-color: #366ab2;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+  svg {
+    fill: #FFF;
+    width: 30px;
+  }
+}
+
+.action:hover {
+  button {
+    background-color: #F7F7F7;
+    border: 2px solid #366ab2;
+    svg {
+      fill: #366ab2;
+    }
+  }
+}

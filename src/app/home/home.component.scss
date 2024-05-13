@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+app-card-viewer {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+app-actions-menu {
+  padding: 40px 0;
+}

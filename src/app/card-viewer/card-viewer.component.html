@@ -1,0 +1,20 @@
+<div class="container">
+@for (card of cards$ | async; track card.id) {
+  <div
+    class="card"
+    [ngClass]="{
+      'amex': card.provider === 'AmericanExpress',
+      'mc': card.provider === 'MasterCard',
+      'visa': card.provider === 'Visa'
+    }"
+    (click)="selectCard(card.id)">
+    <div class="title">{{card.balance | currency}}</div>
+    <div class="bottom-section">
+      <div>· · · · {{card.number}}</div>
+      <div>{{card.provider}}</div>
+    </div>
+  </div>
+} @empty {
+  <div class="empty">Add some cards to view your transactions!</div>
+}
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="title-container" [class.search-only]="showSearchInput">
+    <span class="title" [class.hide-transaction]="showSearchInput">Transactions</span>
+    <div class="search-container">
+      @if (showSearchInput) {
+        <input (keyup.enter)="search(value)" type="text" placeholder="Search" [(ngModel)]="value">
+        <button (click)="toggleSearch()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></button>
+      }
+      @if (showSearchIcon) {
+        <svg (click)="toggleSearch()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+      }
+    </div>
+  </div>
+  @for (transaction of transactions$ | async; track $index) {
+    @if (compareDates(transaction.date)) {
+      <div class="day">{{getUIDate(transaction.date)}}</div>
+    }
+    <div class="transaction-container">
+      <div class="transaction">
+        @switch (transaction.icon) {
+          @case ('Person') {
+            <div class="icon">
+              <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path d="M 191.776 128 C 191.776 29.466 298.443 -32.118 383.776 17.149 C 423.379 40.014 447.776 82.27 447.776 128 C 447.776 226.534 341.109 288.118 255.776 238.851 C 216.173 215.986 191.776 173.73 191.776 128 Z M 95.776 482.3 C 95.776 383.8 175.576 304 274.076 304 L 365.476 304 C 463.976 304 543.776 383.8 543.776 482.3 C 543.776 498.7 530.476 512 514.076 512 L 125.476 512 C 109.076 512 95.776 498.7 95.776 482.3 Z"></path></svg>
+            </div>
+          }
+          @case ('Entertainment') {
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z"/></svg>
+            </div>
+          }
+          @case ('EatingOut') {
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M61.1 224C45 224 32 211 32 194.9c0-1.9 .2-3.7 .6-5.6C37.9 168.3 78.8 32 256 32s218.1 136.3 223.4 157.3c.5 1.9 .6 3.7 .6 5.6c0 16.1-13 29.1-29.1 29.1H61.1zM144 128a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm240 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zM272 96a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM16 304c0-26.5 21.5-48 48-48H448c26.5 0 48 21.5 48 48s-21.5 48-48 48H64c-26.5 0-48-21.5-48-48zm16 96c0-8.8 7.2-16 16-16H464c8.8 0 16 7.2 16 16v16c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V400z"/></svg>
+            </div>
+          }
+        }
+        <div class="details">
+          <div class="name larger-text">{{transaction.name}}</div>
+          <div class="date">{{transaction.date | date:"MMM d, y, H:mm"}}</div>
+        </div>
+      </div>
+      <div class="amount larger-text" [ngClass]="{ 'positive':transaction.amount >= 0, 'negative': transaction.amount < 0 }">{{transaction.amount | currency }}</div>
+    </div>
+  }
+</div>

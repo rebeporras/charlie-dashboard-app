@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  max-width: calc(100vw - 25px);
+}
+
+.card {
+  min-width: 390px;
+  height: 240px;
+  border: 1px solid gray;
+  border-radius: 25px;
+  margin-right: 25px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #FFF;
+
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.amex {
+  background: rgb(18,52,27);
+  background: linear-gradient(62deg, rgba(18,52,27,1) 0%, rgba(17,91,32,1) 58%, rgba(0,119,34,1) 84%);
+}
+
+.mc {
+  background: rgb(33,21,12);
+  background: linear-gradient(62deg, rgba(33,21,12,1) 0%, rgba(64,56,48,1) 47%, rgba(87,76,72,1) 84%);
+}
+
+.visa {
+  background: rgb(6,70,115);
+  background: linear-gradient(62deg, rgba(6,70,115,1) 0%, rgba(46,135,189,1) 58%, rgba(51,144,163,1) 84%);
+}
